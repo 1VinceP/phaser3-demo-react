@@ -6,9 +6,12 @@ class LittleGame extends Component {
 
     // Build the Game class
     componentDidMount() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
         const renderOptions = {
-            width: '100',
-            height: '100',
+            width,
+            height,
             renderer: Phaser.AUTO,
             parent: 'render-game',
             physics: {
