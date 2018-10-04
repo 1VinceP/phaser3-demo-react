@@ -3,16 +3,17 @@ import Phaser from 'phaser';
 
 class LittleGame extends Component {
     game = {};
+    bg = '';
 
     // Build the Game class
     componentDidMount() {
         const width = window.innerWidth;
-        const height = window.innerHeight;
+        const height = window.innerHeight - 4;
 
         const renderOptions = {
             width,
             height,
-            renderer: Phaser.AUTO,
+            renderer: Phaser.WEBGL,
             parent: 'render-game',
             physics: {
                 default: 'arcade',
@@ -36,14 +37,15 @@ class LittleGame extends Component {
 
     // Create the game
     create() {
-        const particles = this.add.particles('red');
+        const particles = this.add.particles('');
         const emitter = particles.createEmitter({
             speed: 100,
             scale: { start: 1, end: 0 },
             blendMode: 'ADD'
         });
-        // Set the background image
-        this.add.image( 800, 400, 'sky' );
+        // Set and scale the background image
+        this.bg = this.add.image( this.game.config.width / 2, this.game.config.height / 2, 'sky' );
+        this.bg.setDisplaySize( this.game.config.width, this.game.config.height );
 
         // Create the cat and make it move
         // The numbers define where it starts
